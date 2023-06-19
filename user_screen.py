@@ -1,42 +1,50 @@
 import tkinter as tk
 
+criteria = {
+    "Pünktlichkeit": 0,
+    "Hausaufgaben erledigt": 0,
+    "Mitarbeit": 0,
+    "Konzentration": 0,
+    "Kreativität": 0,
+    "Soziales Engagement": 0,
+}
 
-def slider_changed(value, i):
-    value = int(value)
-    return value, i
+
+def create_lambda_function(name):
+    def save_values(value):
+        criteria[name] = value
+        print(criteria)
+    return save_values
 
 
-def create_screen():
+def create_screen(update_func):
     # tk basics
     root = tk.Tk()
     root.title("Titel")
-    root.geometry("400x400")
+    root.geometry("600x600")
     root.resizable(False, False)
-    criteria = ["Pünktlichkeit:", "Hausaufgaben erledigt:", "Mitarbeit:", "Konzentration:", "Kreativität:",
-                "Soziales Engagement:"]
 
     # create list of sliders and textes
     slider_list = []
     text_list = []
-    for i in range(6):
-        text = criteria[i]
+    for name, value in criteria.items():
         text_widget = tk.Text(root, height=1)
-        text_widget.insert(tk.END, text)
+        text_widget.insert(tk.END, name)
         text_list.append(text_widget)
-        # the i in the following tuple shows me which slider got changed
+        # the i in the following tuple shows me which slider got changes
 
-        def create_lambda_function(index):
-            return lambda value: slider_changed(value, index)
-
-        note_results = create_lambda_function(i)
+        note_results = create_lambda_function(name)
         slider = tk.Scale(root, from_=0, to=10, orient="horizontal", command=note_results)
         slider_list.append(slider)
-        print(note_results)
-        
+
     # draw sliders and textes on the screen
     for i in range(6):
-        slider_list[i].pack()
         text_list[i].pack()
+        slider_list[i].pack()
+
+    # create button
+    button = tk.Button(command=update_func, text="Neuer Text")
+    button.pack()
 
 
     root.mainloop()
