@@ -4,6 +4,7 @@ import user_screen
 if __name__ == '__main__':
     # create user interface with tkinter
     user_screen.create_screen()
+
     # call api key
     with open("api.key.txt", "r") as api_key:
         API_KEY = api_key.read()

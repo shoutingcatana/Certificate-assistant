@@ -2,9 +2,8 @@ import tkinter as tk
 
 
 def slider_changed(value, i):
-    # print(f"Wert:{value}")
-    print(f"Regler:{i}")
-    pass
+    value = int(value)
+    return value, i
 
 
 def create_screen():
@@ -15,8 +14,6 @@ def create_screen():
     root.resizable(False, False)
     criteria = ["Pünktlichkeit:", "Hausaufgaben erledigt:", "Mitarbeit:", "Konzentration:", "Kreativität:",
                 "Soziales Engagement:"]
-    text = criteria[0]
-    note_results = []
 
     # create list of sliders and textes
     slider_list = []
@@ -27,15 +24,21 @@ def create_screen():
         text_widget.insert(tk.END, text)
         text_list.append(text_widget)
         # the i in the following tuple shows me which slider got changed
-        slider = (tk.Scale(root, from_=0, to=10, orient="horizontal", command=lambda value: slider_changed(value, text)))
-        slider_list.append(slider)
 
+        def create_lambda_function(index):
+            return lambda value: slider_changed(value, index)
+
+        note_results = create_lambda_function(i)
+        slider = tk.Scale(root, from_=0, to=10, orient="horizontal", command=note_results)
+        slider_list.append(slider)
+        print(note_results)
+        
     # draw sliders and textes on the screen
     for i in range(6):
         slider_list[i].pack()
         text_list[i].pack()
 
-    root.mainloop()
 
+    root.mainloop()
 
 
