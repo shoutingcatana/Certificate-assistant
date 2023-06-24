@@ -13,7 +13,6 @@ criteria = {
 def create_lambda_function(name):
     def save_values(value):
         criteria[name] = value
-        print(criteria)
     return save_values
 
 
@@ -45,7 +44,10 @@ def create_screen(update_func):
     # create button
     button = tk.Button(command=update_func, text="Neuer Text")
     button.pack()
-
+    # show result in the tk window
+    # Create label
+    label = tk.Label(root, text="Fact of the Day")
+    label.pack()
 
     root.mainloop()
 
