@@ -1,5 +1,7 @@
 import tkinter as tk
 
+import main
+
 criteria = {
     "Pünktlichkeit": 0,
     "Hausaufgaben erledigt": 0,
@@ -48,7 +50,6 @@ def create_screen(update_func):
     # Create label
     label = tk.Label(root, text="Fact of the Day")
     label.pack()
-
     root.mainloop()
 
 
