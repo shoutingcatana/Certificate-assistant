@@ -23,10 +23,11 @@ def create_lambda_function(name):
 def chat_gpt_response(response):
     global answer
     answer = response
+    print(answer)
     return answer
 
 
-answer = None
+answer = "text"
 
 
 def create_screen(update_func):
@@ -58,6 +59,7 @@ def create_screen(update_func):
     button.grid(row=6, columnspan=2, pady=10)
 
     textbox = customtkinter.CTkTextbox(root)
+
     textbox.insert("0.0", answer)  # insert at line 0 character 0
     textbox.get("0.0", "end")  # get text from line 0 character 0 till the end
     # textbox.delete("0.0", "end")  # delete all text

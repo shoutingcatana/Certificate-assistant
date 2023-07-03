@@ -39,7 +39,6 @@ if __name__ == '__main__':
             )
             answer = ergebnis.choices[0].message.content
             bui.chat_gpt_response(answer)
-            print(answer)
             return answer
 
         # create user interface with tkinter
