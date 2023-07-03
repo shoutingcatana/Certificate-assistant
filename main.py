@@ -1,8 +1,7 @@
 import chatgpt
-import user_screen
 import better_user_interface
 import openai
-from better_user_interface import chat_gpt_response
+import better_user_interface as bui
 
 
 def create_prompt(criteria):
@@ -30,7 +29,7 @@ if __name__ == '__main__':
         # call chat gpt and tell him hsi role
 
         def update_func():
-            prompt = create_prompt(user_screen.criteria)
+            prompt = create_prompt(bui.criteria)
             # chat_gpt = chatgpt.ChatGPT(API_KEY, prompt)
             openai.api_key = API_KEY
             dialog = [{"role": "system", "content": prompt}]
@@ -39,7 +38,8 @@ if __name__ == '__main__':
                 messages=dialog
             )
             answer = ergebnis.choices[0].message.content
-            chat_gpt_response(answer)
+            bui.chat_gpt_response(answer)
+            print(answer)
             return answer
 
         # create user interface with tkinter

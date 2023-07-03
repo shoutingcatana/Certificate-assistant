@@ -23,6 +23,7 @@ def create_lambda_function(name):
 def chat_gpt_response(response):
     global answer
     answer = response
+    return answer
 
 
 answer = None
