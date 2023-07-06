@@ -38,13 +38,12 @@ if __name__ == '__main__':
                 messages=dialog
             )
             answer = ergebnis.choices[0].message.content
-            bui.chat_gpt_response(answer)
-            return answer
+            bui.answer_form_gpt = answer
+            print(answer)
 
-        # create user interface with tkinter
-    better_user_interface.create_screen(update_func)
+        def update_gpt_answer():
+            # create user interface with tkinter
 
-
-
-
+            better_user_interface.create_screen(update_func)
+    update_gpt_answer()
 
