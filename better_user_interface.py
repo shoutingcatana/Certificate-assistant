@@ -20,8 +20,7 @@ def create_lambda_function(name):
     return save_values
 
 
-answer_form_gpt = "Antwort"
-
+textbox = None
 
 def create_screen(update_func):
     customtkinter.set_appearance_mode("dark")
@@ -51,12 +50,9 @@ def create_screen(update_func):
     button = customtkinter.CTkButton(root, text="Run", command=update_func)
     button.grid(row=6, columnspan=2, pady=10)
 
+    global textbox
     textbox = customtkinter.CTkTextbox(root)
     textbox.insert("0.0", answer_form_gpt)  # insert at line 0 character 0
-    textbox.get("0.0", "end")  # get text from line 0 character 0 till the end
-    # textbox.delete("0.0", "end")  # delete all text
-    textbox.configure(state="disabled")  # configure textbox to be read-only
-
     textbox.grid(row=7, columnspan=2, padx=10, pady=10, sticky="nsew")
 
     root.mainloop()
