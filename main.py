@@ -1,14 +1,13 @@
 import chatgpt
-import better_user_interface
 import openai
 import better_user_interface as bui
 
 
 def create_prompt(criteria):
     prompt = f"""
-Sei ein Lehrer: Schreibe zwei bis drei Sätze zu der Leistung eines Schülers 
+Sei ein Lehrer: Schreibe zwei bis drei Sätze zu der Leistung eines Schülers
 anhand dieser Bewertungskriterien die auf einer Skale von 0 bis 10 getroffen wurden
-und beschränke dich auf eine für ein 
+und beschränke dich auf eine für ein
 Zeugnis vernünftige länge. Erwähne nicht die Skala oder die dir gegebenen Zahlen:
 
 Pünktlichkeit:{criteria["Pünktlichkeit"]},
@@ -25,7 +24,7 @@ Soziales Engagement:{criteria["Soziales Engagement"]}
 if __name__ == '__main__':
     # call api key
     with open("api.key.txt", "r") as api_key:
-        API_KEY = api_key.read()
+        API_KEY = api_key.read().strip()
         # call chat gpt and tell him hsi role
 
         def update_func():
@@ -38,12 +37,12 @@ if __name__ == '__main__':
                 messages=dialog
             )
             answer = ergebnis.choices[0].message.content
-            bui.answer_form_gpt = answer
+            bui.textbox.insert("0.0", answer)
             print(answer)
 
         def update_gpt_answer():
             # create user interface with tkinter
 
-            better_user_interface.create_screen(update_func)
+            bui.create_screen(update_func)
     update_gpt_answer()
 
